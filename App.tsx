@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component, Children } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,8 +24,14 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Screen from "./Screen";
+
 const App: () => React$Node = () => {
   return (
+    <>
+      <Screen></Screen>
+    </>
+    /*
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -69,9 +75,12 @@ const App: () => React$Node = () => {
         </ScrollView>
       </SafeAreaView>
     </>
+    */
   );
 };
 
+
+/*
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -110,5 +119,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+*/
 
 export default App;

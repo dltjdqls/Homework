@@ -15,7 +15,7 @@ class List extends Component {
     @action
     onPress = () => {
         console.log("pressed")
-        this.extended = !(this.extended);
+        this.extended = !(this.extended)
     }
 
     list = () => {
@@ -27,7 +27,7 @@ class List extends Component {
                         }}
                     >
 
-                    </View>;
+                    </View>
         }
         return null
     }
@@ -44,15 +44,7 @@ class List extends Component {
     render() {
         return (
             <>
-                <TouchableOpacity
-                    onPress={this.onPress}
-                    style={{
-                        backgroundColor: 'gray',
-                        height: 50,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
-                    >
+                <TouchableOpacity onPress={this.onPress} style={{backgroundColor: 'gray', height: 50, alignItems: 'center', justifyContent: 'center'}}>
                     <Text> {this.buttonText()} </Text>
                 </TouchableOpacity>
                 {this.list()}
@@ -61,4 +53,4 @@ class List extends Component {
     }
 }
 
-export default observer(List);
+export default List;

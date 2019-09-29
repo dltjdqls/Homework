@@ -10,7 +10,7 @@ import States from './States';
 import Place from './Place';
 
 @observer
-class MidButtons extends Component<{states: States}, {}> {
+class MidButtons extends Component<{states: States, nav: any}, {}> {
 
     @action
     cancelPress = () => {
@@ -19,6 +19,7 @@ class MidButtons extends Component<{states: States}, {}> {
 
     @action
     addPress = () => {
+        this.props.nav.navigate("Second")
         this.props.states.placeList.push(new Place(this.props.states.markerRegion, "place", this.props.states.globalTime))
         this.props.states.changeAdding()
         console.log(this.props.states.placeList.length)

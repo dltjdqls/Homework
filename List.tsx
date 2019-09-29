@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { observable, reaction, action, computed } from "mobx";
-import { observer, inject } from "mobx-react";
+import { observable, action } from "mobx";
+import { observer } from "mobx-react";
 import {
     View,
     Text,
@@ -8,32 +8,25 @@ import {
     FlatList,
 } from 'react-native';
 import States from './States';
-import { LatLng } from 'react-native-maps';
 
 // @inject('States')
 @observer
 class List extends Component<{states: States}, {}> {
     @observable time: number = 0
 
+    componentDidMount() {
+        setInterval(this.updateTime, 1000)
+    }
+
     @action
     updateTime = () => {
         this.time = this.props.states.globalTime
-    }
-
-    componentDidMount() {
-        setInterval(this.updateTime, 1000)
     }
 
     @action
     onPress = () => {
         this.props.states.changeExtended()
     }
-
-    @action
-    changeRegion = (pos: LatLng) => {
-        this.props.states.changeRegion(pos)
-    }
-
 
     getList = () => {
         if (this.props.states.placeList.length == 0){
@@ -46,7 +39,7 @@ class List extends Component<{states: States}, {}> {
         return <FlatList
                 data={this.props.states.placeList}
                 renderItem={({item}) =>
-                    <TouchableOpacity onPress={(e) => this.changeRegion(item.pos)} style={{height:40, width:'100%', borderBottomColor:"lightgray", borderBottomWidth:1, flexDirection:'row', alignItems:'center'}}>
+                    <TouchableOpacity onPress={() => this.props.states.changeRegion(item.pos)} style={{height:40, width:'100%', borderBottomColor:"lightgray", borderBottomWidth:1, flexDirection:'row', alignItems:'center'}}>
                         <View style={{position: 'absolute', left: 20}}>
                             <Text style={{flex:1}}>{item.name}</Text>
                         </View>
@@ -92,7 +85,7 @@ class List extends Component<{states: States}, {}> {
                     <Text> {this.buttonText()} </Text>
                 </TouchableOpacity>
                 {this.renderList()}
-                <View style={{height:0}}>
+                <View style={{position: 'absolute', bottom: 0, height:0}}>
                     <Text> {this.time} </Text>
                 </View>
             </>

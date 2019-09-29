@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { observable, action } from 'mobx';
 import { observer } from 'mobx-react';
-import {
-    View,
-    Text,
-} from 'react-native';
 import Map from "./Map";
 import List from "./List";
 import MidButtons from "./MidButtons";
@@ -12,7 +8,7 @@ import States from './States'
 
 
 @observer
-class Screen extends Component {
+class MainPage extends Component {
     store: States = new States()
 
     componentDidMount() {
@@ -20,14 +16,15 @@ class Screen extends Component {
     }
 
     render() {
+        const { navigation } = this.props
         return(
             <>
                 <Map states = {this.store}></Map>
-                <MidButtons states = {this.store}></MidButtons>
+                <MidButtons states = {this.store} nav = {navigation}></MidButtons>
                 <List states = {this.store}></List>
             </>
         );
     }
 }
 
-export default Screen;
+export default MainPage;

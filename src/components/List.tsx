@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import States from '../store/States';
 
-// @inject('States')
 @observer
 class List extends Component<{states: States}, {}> {
     @observable time: number = 0
@@ -25,17 +24,34 @@ class List extends Component<{states: States}, {}> {
 
     @action
     onPress = () => {
-        
         this.props.states.changeExtended()
     }
 
     timeText = (time: number) => {
         if (time >= 60) {
-            return <Text> {Math.floor(time/60)} minutes ago</Text>
+            if (Math.floor(time/60) == 1) {
+                return <Text> 1 minute ago</Text>
+            }
+
+            else {
+                return <Text> {Math.floor(time/60)} minutes ago </Text>
+            }
         }
 
+        if (time == 1) {
+            return <Text> 1 second ago </Text>
+        }
+        
         return <Text> {time} seconds ago </Text>
     }
+
+    buttonText = () => {
+        if (this.props.states.extended) {
+            return <Text> 닫기 </Text>
+        }
+        return <Text> 열기 </Text>
+    }
+
 
     getList = () => {
         if (this.props.states.placeList.length == 0){
@@ -75,14 +91,6 @@ class List extends Component<{states: States}, {}> {
         }
         return null
     }
-
-    buttonText = () => {
-        if (this.props.states.extended) {
-            return <Text> 닫기 </Text>
-        }
-        return <Text> 열기 </Text>
-    }
-
 
     render() {
         return (

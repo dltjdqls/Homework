@@ -7,6 +7,7 @@ class States {
     @observable adding: boolean = false
     @observable changedPosition: LatLng = {latitude:37.574239, longitude:126.977446}
     @observable changedMarkerPosition: LatLng = {latitude:37.574239, longitude:126.977446}
+    @observable globalTime: number = 0
     
     @observable placeList: Place[] = []
 
@@ -37,6 +38,11 @@ class States {
     changeMarkerRegion = (pos : LatLng) => {
         this.changedMarkerPosition = pos
         console.log(this.changedMarkerPosition)
+    }
+
+    @action
+    increaseTime = () => {
+        this.globalTime++
     }
 
     @computed

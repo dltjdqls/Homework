@@ -19,7 +19,7 @@ class MidButtons extends Component<{states: States}, {}> {
 
     @action
     addPress = () => {
-        this.props.states.placeList.push(new Place(this.props.states.markerRegion, "place", 0))
+        this.props.states.placeList.push(new Place(this.props.states.markerRegion, "place", this.props.states.globalTime))
         this.props.states.changeAdding()
         console.log(this.props.states.placeList.length)
     }

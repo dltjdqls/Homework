@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { observable, action } from 'mobx';
+import { observer } from 'mobx-react';
 import {
     View,
     Text,
@@ -9,9 +11,14 @@ import MidButtons from "./MidButtons";
 import States from './States'
 
 
-
+@observer
 class Screen extends Component {
     store: States = new States()
+
+    componentDidMount() {
+        setInterval(() => {this.store.globalTime++}, 1000)
+    }
+
     render() {
         return(
             <>

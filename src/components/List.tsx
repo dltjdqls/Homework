@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     FlatList,
 } from 'react-native';
-import States from './States';
+import States from '../store/States';
 
 // @inject('States')
 @observer
@@ -25,6 +25,7 @@ class List extends Component<{states: States}, {}> {
 
     @action
     onPress = () => {
+        
         this.props.states.changeExtended()
     }
 

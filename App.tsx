@@ -1,13 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import MainPage from "./MainPage";
-import NamingPage from "./NamingPage";
+import MainPage from "./src/pages/MainPage";
+import NamingPage from "./src/pages/NamingPage";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 

@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx';
 import { LatLng } from 'react-native-maps';
-import Place from './Place';
+import Place from '../datastructures/Place';
 
 class States {
     @observable extended: boolean = false

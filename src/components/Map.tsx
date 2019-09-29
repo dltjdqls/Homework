@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { observer } from 'mobx-react';
-import States from './States';
+import States from '../store/States';
 
 @observer
 class Map extends Component<{states: States}, {}> {

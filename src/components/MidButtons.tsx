@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import States from './States';
+import States from '../store/States';
 
 @observer
 class MidButtons extends Component<{states: States, nav: any}, {}> {

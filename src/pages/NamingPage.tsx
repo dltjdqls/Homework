@@ -5,9 +5,9 @@ import {
     TouchableOpacity,
     TextInput,
  } from 'react-native';
-import States from './States';
+import States from '../store/States';
 import { action } from 'mobx';
-import Place from './Place';
+import Place from '../datastructures/Place';
 import { LatLng } from 'react-native-maps';
 
 
@@ -23,7 +23,9 @@ class NamingPage extends Component<{states: States}, {}> {
         const newLocName: string = store.newLocationName
         const time: number = store.globalTime
 
-        store.placeList.unshift(new Place(newLoc, newLocName, time))
+        if (newLocName != '')
+            store.placeList.unshift(new Place(newLoc, newLocName, time))
+        store.newLocationName = ''
         nav.goBack()
     }
 

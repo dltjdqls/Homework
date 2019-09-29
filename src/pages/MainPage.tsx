@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import Map from "./Map";
-import List from "./List";
-import MidButtons from "./MidButtons";
-import States from './States'
+import Map from "../components/Map";
+import List from "../components/List";
+import MidButtons from "../components/MidButtons";
+import States from '../store/States'
 
 
 @observer

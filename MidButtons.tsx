@@ -4,30 +4,31 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
+import States from './States';
 
 @observer
-class MidButtons extends Component {
-    @observable adding = false
+class MidButtons extends Component<{states: States}, {}> {
 
     @action
     cancelPress = () => {
-        this.adding = false
+        this.props.states.changeAdding()
     }
 
     @action
     addPress = () => {
-        this.adding = false
+        this.props.states.changeAdding()
     }
 
     @action
     locPress = () => {
-        this.adding = true
+        this.props.states.changeAdding()
     }
 
+
     renderButtons = () => {
-        if (this.adding) {
+        if (this.props.states.adding) {
             return <>
                     <TouchableOpacity onPress={this.cancelPress} style={{position: 'absolute', backgroundColor: 'lightgray', right: 20, bottom: 70, height: 30, width: 150, alignItems: 'center', justifyContent: 'center'}}>
                         <Text>취소</Text>

@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { observable, reaction, action } from "mobx";
-import { observer } from "mobx-react";
+import { observable, reaction, action, computed } from "mobx";
+import { observer, inject } from "mobx-react";
 import {
     View,
     Text,
     TouchableOpacity,
 } from 'react-native';
+import States from './States';
 
+// @inject('States')
 @observer
-class List extends Component {
+class List extends Component<{states: States}, {}> {
 
-    @observable extended = false
 
     @action
     onPress = () => {
-        console.log("pressed")
-        this.extended = !(this.extended)
+        this.props.states.changeExtended()
     }
 
     list = () => {
-        if (this.extended) {
+        if (this.props.states.extended) {
             return <View
                         style={{
                             backgroundColor:'white',
@@ -33,10 +33,9 @@ class List extends Component {
     }
 
     buttonText = () => {
-        if (this.extended) {
+        if (this.props.states.extended) {
             return <Text> 닫기 </Text>
         }
-
         return <Text> 열기 </Text>
     }
 
@@ -44,7 +43,7 @@ class List extends Component {
     render() {
         return (
             <>
-                <TouchableOpacity onPress={this.onPress} style={{backgroundColor: 'gray', height: 50, alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity onPress={this.onPress} style={{backgroundColor: 'white', height: 50, alignItems: 'center', justifyContent: 'center'}}>
                     <Text> {this.buttonText()} </Text>
                 </TouchableOpacity>
                 {this.list()}

@@ -6,23 +6,10 @@
  * @flow
  */
 
-import React, { Component, Children } from 'react';
-import Screen from './Screen';
-
-
-
 import MainPage from "./MainPage";
 import NamingPage from "./NamingPage";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-// const App: () => React$Node = () => {
-//   return (
-//     <>
-//       <Screen></Screen>
-//     </>
-//   );
-// };
 
 const App = createStackNavigator(
   {

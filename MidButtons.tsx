@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
-    View,
     Text,
     TouchableOpacity,
 } from 'react-native';
-import { observable, action, computed } from 'mobx';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import States from './States';
-import Place from './Place';
 
 @observer
 class MidButtons extends Component<{states: States, nav: any}, {}> {
@@ -19,8 +17,8 @@ class MidButtons extends Component<{states: States, nav: any}, {}> {
 
     @action
     addPress = () => {
-        this.props.nav.navigate("Second")
-        this.props.states.placeList.push(new Place(this.props.states.markerRegion, "place", this.props.states.globalTime))
+        this.props.states.newLocation = this.props.states.markerRegion
+        this.props.nav.navigate("Second", {store: this.props.states})
         this.props.states.changeAdding()
         console.log(this.props.states.placeList.length)
     }

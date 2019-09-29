@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { observable, action } from 'mobx';
 import { observer } from 'mobx-react';
 import Map from "./Map";
 import List from "./List";
@@ -8,7 +7,7 @@ import States from './States'
 
 
 @observer
-class MainPage extends Component {
+class MainPage extends Component<{states: States},{}> {
     store: States = new States()
 
     componentDidMount() {

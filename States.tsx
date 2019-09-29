@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx';
-import { LatLng, Region } from 'react-native-maps';
+import { LatLng } from 'react-native-maps';
 import Place from './Place';
 
 class States {
@@ -8,6 +8,8 @@ class States {
     @observable changedPosition: LatLng = {latitude:37.574239, longitude:126.977446}
     @observable changedMarkerPosition: LatLng = {latitude:37.574239, longitude:126.977446}
     @observable globalTime: number = 0
+    newLocationName: string = ''
+    newLocation: LatLng = {latitude:0.0, longitude:0.0}
     
     @observable placeList: Place[] = []
 
@@ -43,6 +45,11 @@ class States {
     @action
     increaseTime = () => {
         this.globalTime++
+    }
+
+    @action
+    addNewLocation = () => {
+        this.placeList.push(new Place(this.newLocation, this.newLocationName, this.globalTime))
     }
 
     @computed

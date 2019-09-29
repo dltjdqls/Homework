@@ -28,6 +28,14 @@ class List extends Component<{states: States}, {}> {
         this.props.states.changeExtended()
     }
 
+    timeText = (time: number) => {
+        if (time > 60) {
+            return <Text> {Math.floor(time/60)} minutes ago</Text>
+        }
+
+        return <Text> {time} seconds ago </Text>
+    }
+
     getList = () => {
         if (this.props.states.placeList.length == 0){
             console.log("성분 x")
@@ -44,7 +52,7 @@ class List extends Component<{states: States}, {}> {
                             <Text style={{flex:1}}>{item.name}</Text>
                         </View>
                         <View style={{position: 'absolute', right: 20}}>
-                            <Text>{this.time - item.time} seconds ago </Text>
+                            {this.timeText(this.time-item.time)}
                         </View>
                     </TouchableOpacity>
                 }

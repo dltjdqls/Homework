@@ -5,6 +5,7 @@ import {
     View,
     Text,
     TouchableOpacity,
+    FlatList,
 } from 'react-native';
 import States from './States';
 
@@ -26,7 +27,15 @@ class List extends Component<{states: States}, {}> {
                             height: 200,
                         }}
                     >
-
+                        <FlatList
+                            data={this.props.states.placeList}
+                            renderItem={({item}) =>
+                                <View style={{height:30, borderBottomColor:"lightgray", borderBottomWidth:1}}>
+                                    <Text>{item.name}</Text>
+                                </View>
+                            }
+                            keyExtractor = {item => item.name}
+                        />
                     </View>
         }
         return null
@@ -43,7 +52,10 @@ class List extends Component<{states: States}, {}> {
     render() {
         return (
             <>
-                <TouchableOpacity onPress={this.onPress} style={{backgroundColor: 'white', height: 50, alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity
+                    onPress={this.onPress}
+                    style={{backgroundColor: 'white', borderBottomColor:'lightgray', borderBottomWidth:1, height: 50, alignItems: 'center', justifyContent: 'center'}}
+                >
                     <Text> {this.buttonText()} </Text>
                 </TouchableOpacity>
                 {this.list()}

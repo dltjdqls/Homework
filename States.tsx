@@ -1,8 +1,14 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
+import { LatLng, Region } from 'react-native-maps';
+import Place from './Place';
 
 class States {
     @observable extended: boolean = false
     @observable adding: boolean = false
+    @observable changedPosition: LatLng = {latitude:37.574239, longitude:126.977446}
+    @observable changedMarkerPosition: LatLng = {latitude:37.574239, longitude:126.977446}
+    
+    @observable placeList: Place[] = []
 
     @action
     changeExtended = () => {
@@ -15,6 +21,34 @@ class States {
         console.log("states.changeadding")
         this.adding = !(this.adding)
     }
+
+    @action
+    changeMarker = (pos : LatLng) => {
+        console.log(pos)
+    }
+
+    @action
+    changeRegion = (pos : LatLng) => {
+        this.changedPosition = {latitude:pos.latitude, longitude:pos.longitude}
+        console.log(this.changedPosition)
+    }
+
+    @action
+    changeMarkerRegion = (pos : LatLng) => {
+        this.changedMarkerPosition = pos
+        console.log(this.changedMarkerPosition)
+    }
+
+    @computed
+    get mapRegion(): LatLng {
+        return {latitude: this.changedPosition.latitude, longitude: this.changedPosition.longitude}
+    }
+
+    @computed
+    get markerRegion(): LatLng {
+        return {latitude: this.changedMarkerPosition.latitude, longitude: this.changedMarkerPosition.longitude}
+    }
+
 }
 
 export default States;

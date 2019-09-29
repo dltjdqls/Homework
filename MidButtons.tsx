@@ -7,6 +7,7 @@ import {
 import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import States from './States';
+import Place from './Place';
 
 @observer
 class MidButtons extends Component<{states: States}, {}> {
@@ -18,7 +19,9 @@ class MidButtons extends Component<{states: States}, {}> {
 
     @action
     addPress = () => {
+        this.props.states.placeList.push(new Place(this.props.states.markerRegion, "place", 0))
         this.props.states.changeAdding()
+        console.log(this.props.states.placeList.length)
     }
 
     @action

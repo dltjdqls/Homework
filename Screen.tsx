@@ -15,7 +15,7 @@ class Screen extends Component {
     render() {
         return(
             <>
-                <Map></Map>
+                <Map states = {this.store}></Map>
                 <MidButtons states = {this.store}></MidButtons>
                 <List states = {this.store}></List>
             </>

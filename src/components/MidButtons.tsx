@@ -19,7 +19,6 @@ class MidButtons extends Component<{states: States, nav: any}, {}> {
     addPress = () => {
         this.props.states.newLocation = this.props.states.markerRegion
         this.props.nav.navigate("Second", {store: this.props.states})
-        this.props.states.changeAdding()
         console.log(this.props.states.placeList.length)
     }
 

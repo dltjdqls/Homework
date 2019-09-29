@@ -30,7 +30,7 @@ class List extends Component<{states: States}, {}> {
     }
 
     timeText = (time: number) => {
-        if (time > 60) {
+        if (time >= 60) {
             return <Text> {Math.floor(time/60)} minutes ago</Text>
         }
 

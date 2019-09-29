@@ -26,6 +26,7 @@ class NamingPage extends Component<{states: States}, {}> {
         if (newLocName != '')
             store.placeList.unshift(new Place(newLoc, newLocName, time))
         store.newLocationName = ''
+        store.changeAdding()
         nav.goBack()
     }
 

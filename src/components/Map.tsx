@@ -23,9 +23,11 @@ class Map extends Component<{states: States}, {}> {
         if (this.props.states.adding) {
             return (
                 <MapView
+                    ref = {(ref) => this.props.states.mapView = ref}
                     provider = {PROVIDER_GOOGLE}
                     style = {{flex:1}}
-                    region={{latitude:this.props.states.mapRegion.latitude, longitude:this.props.states.mapRegion.longitude, latitudeDelta:0.0922, longitudeDelta:0.0421}}
+                    initialRegion={{latitude:37.574239, longitude:126.977446, latitudeDelta:0.0922, longitudeDelta:0.0421}}
+                    // region={{latitude:this.props.states.mapRegion.latitude, longitude:this.props.states.mapRegion.longitude, latitudeDelta:0.0922, longitudeDelta:0.0421}}
                     onRegionChangeComplete={(e) => this.props.states.changeRegion({latitude: e.latitude, longitude: e.longitude})}
                 >
                     <Marker draggable coordinate={this.props.states.markerRegion} onDragEnd={(e) => this.props.states.changeMarkerRegion(e.nativeEvent.coordinate)}></Marker>
@@ -35,9 +37,11 @@ class Map extends Component<{states: States}, {}> {
 
         return (
             <MapView
+                ref = {(ref) => this.props.states.mapView = ref}
                 provider = {PROVIDER_GOOGLE}
                 style = {{flex:1}}
-                region={{latitude:this.props.states.mapRegion.latitude, longitude:this.props.states.mapRegion.longitude, latitudeDelta:0.0922, longitudeDelta:0.0421}}
+                initialRegion={{latitude:37.574239, longitude:126.977446, latitudeDelta:0.0922, longitudeDelta:0.0421}}
+                // region={{latitude:this.props.states.mapRegion.latitude, longitude:this.props.states.mapRegion.longitude, latitudeDelta:0.0922, longitudeDelta:0.0421}}
                 onRegionChangeComplete={(e) => this.props.states.changeRegion({latitude: e.latitude, longitude: e.longitude})}
             >
                 {this.renderMarker()}

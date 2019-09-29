@@ -10,6 +10,7 @@ class States {
     @observable globalTime: number = 0
     newLocationName: string = ''
     newLocation: LatLng = {latitude:0.0, longitude:0.0}
+    mapView: any
     
     @observable placeList: Place[] = []
 
@@ -33,6 +34,7 @@ class States {
     @action
     changeRegion = (pos : LatLng) => {
         this.changedPosition = {latitude:pos.latitude, longitude:pos.longitude}
+        this.mapView.animateToRegion({latitude:pos.latitude, longitude:pos.longitude, latitudeDelta:0.0922, longitudeDelta:0.0421}, 500)
         console.log(this.changedPosition)
     }
 
